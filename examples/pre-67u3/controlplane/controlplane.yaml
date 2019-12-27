@@ -55,16 +55,33 @@ spec:
       extraArgs:
         cloud-provider: vsphere
         cloud-config: /etc/kubernetes/vsphere.conf
+        audit-log-maxage: "100"
+        audit-log-maxbackup: "10"
+        audit-log-maxsize: "100"
+        audit-log-path: "/var/log/kube-apiserver-audit.log"
+        authorization-mode: "Node,RBAC"
+        enable-admission-plugins: "NodeRestriction,AlwaysPullImages,ServiceAccount"
+        insecure-port: "0"
+        profiling: "false"
+        request-timeout: "300s"
+        tls-cipher-suites: "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA"
       extraVolumes:
       - name: "cloud-config"
         hostPath: /etc/kubernetes/vsphere.conf
         mountPath: /etc/kubernetes/vsphere.conf
         readOnly: true
         pathType: File
+    scheduler:
+      extraArgs:
+        profiling: "false"
+        tls-cipher-suites: "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA"
     controllerManager:
       extraArgs:
         cloud-provider: vsphere
         cloud-config: /etc/kubernetes/vsphere.conf
+        profiling: "false"
+        tls-cipher-suites: "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA"
+        terminated-pod-gc-threshold: "10"
       extraVolumes:
       - name: "cloud-config"
         hostPath: /etc/kubernetes/vsphere.conf

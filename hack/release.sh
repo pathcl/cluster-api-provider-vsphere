@@ -23,7 +23,7 @@ set -o nounset
 set -o pipefail
 
 # BASE_REPO is the root path of the image repository
-readonly BASE_IMAGE_REPO=gcr.io/cluster-api-provider-vsphere
+readonly BASE_IMAGE_REPO=pathcl
 
 # Release images
 readonly CAPV_MANAGER_IMAGE_RELEASE=${BASE_IMAGE_REPO}/release/manager
@@ -34,8 +34,8 @@ readonly CAPV_MANAGER_IMAGE_PR=${BASE_IMAGE_REPO}/pr/manager
 readonly CAPV_MANIFESTS_IMAGE_PR=${BASE_IMAGE_REPO}/pr/manifests
 
 # CI images
-readonly CAPV_MANAGER_IMAGE_CI=${BASE_IMAGE_REPO}/ci/manager
-readonly CAPV_MANIFESTS_IMAGE_CI=${BASE_IMAGE_REPO}/ci/manifests
+readonly CAPV_MANAGER_IMAGE_CI=${BASE_IMAGE_REPO}/manager
+readonly CAPV_MANIFESTS_IMAGE_CI=${BASE_IMAGE_REPO}/manifests
 
 AUTH=
 PUSH=
@@ -154,7 +154,7 @@ function push_images() {
   [ "${MANAGER_IMAGE_NAME}" ] || fatal "MANAGER_IMAGE_NAME not set"
   [ "${MANIFESTS_IMAGE_NAME}" ] || fatal "MANIFESTS_IMAGE_NAME not set"
 
-  login
+  # login
 
   # Manager image
   echo "pushing ${MANAGER_IMAGE_NAME}:${VERSION}"
