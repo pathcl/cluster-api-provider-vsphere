@@ -1,11 +1,11 @@
 apiVersion: cluster.x-k8s.io/v1alpha2
 kind: MachineDeployment
 metadata:
-  name: ${CLUSTER_NAME}-md-0
+  name: ${CLUSTER_NAME}0
   labels:
     cluster.x-k8s.io/cluster-name: ${CLUSTER_NAME}
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       cluster.x-k8s.io/cluster-name: ${CLUSTER_NAME}
@@ -19,16 +19,16 @@ spec:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
           kind: KubeadmConfigTemplate
-          name: ${CLUSTER_NAME}-md-0
+          name: ${CLUSTER_NAME}0
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
         kind: VSphereMachineTemplate
-        name: ${CLUSTER_NAME}-md-0
+        name: ${CLUSTER_NAME}0
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
 kind: VSphereMachineTemplate
 metadata:
-  name: ${CLUSTER_NAME}-md-0
+  name: ${CLUSTER_NAME}0
 spec:
   template:
     spec:
@@ -46,7 +46,7 @@ spec:
 apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
 kind: KubeadmConfigTemplate
 metadata:
-  name: ${CLUSTER_NAME}-md-0
+  name: ${CLUSTER_NAME}0
 spec:
   template:
     spec:
