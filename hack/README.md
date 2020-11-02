@@ -42,7 +42,25 @@ Assuming you don't have any running cluster we'll install k3s.
     puma   Ready    master   108s   v1.18.9+k3s1
 
 
-At this point we have k3s up and running. Now we are ready to deploy cluster-api-provider. 
+At this point we have k3s up and running. Now we are ready to deploy cluster-api-provider. You'll need yo create a file in your $HOME.
+
+    $ cat /home/pathcl/.cluster-api/clusterctl.yaml 
+    ## -- Controller settings -- ##
+    VSPHERE_USERNAME: "administrator@vsphere.local"                    # The username used to access the remote vSphere endpoint
+    VSPHERE_PASSWORD: "somepassword"                                  # The password used to access the remote vSphere endpoint
+
+    ## -- Required workload cluster default settings -- ##
+    VSPHERE_SERVER: "192.168.1.60"                                    # The vCenter server IP or FQDN
+    VSPHERE_DATACENTER: "LabDC"                                # The vSphere datacenter to deploy the management cluster on
+    VSPHERE_DATASTORE: "Esxi_LocalSSD"                         # The vSphere datastore to deploy the management cluster on
+    VSPHERE_NETWORK: "VM Network"                                 # The VM network to deploy the management cluster on
+    VSPHERE_RESOURCE_POOL: "*/Resources"                          # The vSphere resource pool for your VMs
+    VSPHERE_FOLDER: ""                                          # The VM folder for your VMs. Set to "" to use the root vSphere folder
+    VSPHERE_TEMPLATE: "ubuntu-1804-kube-v1.18.2"                  # The VM template to use for your management cluster.
+    CONTROL_PLANE_ENDPOINT_IP: "192.168.1.230"                    # the IP that kube-vip is going to use as a control plane endpoint
+    EXP_CLUSTER_RESOURCE_SET: "true"                              # This enables the ClusterResourceSet feature that we are using to deploy CSI
+    VSPHERE_SSH_AUTHORIZED_KEY: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCoJKZ7dZJVV3+U6zXRvvQSyFeM2QXgfK/CyboGsPvi/ApNk7HpGNg+ws1FTYlDeztgsecfsgkmNgsKv6X+zaBB3ljy7HGlqZs2JSzbVT1/CKQ7m3ZQssHykFYOBVrTHO9+PzBaYhgosU8DqT/joId3mk+G2QnaXr0e6oYd9P8df101c9EOCZyg9oZ2t3TEotPQE2gMwInnDX1NXF/w+xDWOzRU7E+1cwZusuPtXPgXQdlheHOQ4pi+obx/f3Ur8DRURNe68cof1d+ByaYCDWQCONqyzCCRXzkpOX1ZULL2PSj5quXkpaA/ZRdxTQuonXvKTCcUsAC1BYwvMeYtrlQN pathcl@kepler" 
+
 
 Download clusterctl binary.
 
