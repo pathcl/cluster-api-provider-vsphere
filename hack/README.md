@@ -42,7 +42,7 @@ Assuming you don't have any running cluster we'll install k3s.
     puma   Ready    master   108s   v1.18.9+k3s1
 
 
-At this point we have k3s up and running. Now we are ready to deploy cluster-api-provider. You'll need yo create a file in your $HOME.
+At this point we have k3s up and running. Now we are ready to deploy cluster-api-provider. You'll need yo create a file named: $HOME/.cluster-api/clusterctl.yaml 
 
     $ cat /home/pathcl/.cluster-api/clusterctl.yaml 
     ## -- Controller settings -- ##
