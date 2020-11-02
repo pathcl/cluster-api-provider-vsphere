@@ -7,7 +7,7 @@ What you'll need
 - Network access to vsphere api
 - Dhcp running the destination network (VSPHERE_NETWORK)
 - Vsphere templates. Check [here](https://github.com/kubernetes-sigs/cluster-api-provider-vsphere#kubernetes-versions-with-published-ovas)
--   For this case we'll use [photon-3-kube-v1.18.2](http://storage.googleapis.com/capv-images/release/v1.18.2/photon-3-kube-v1.18.2.ova) and [photon-3-kube-v1.17.5](http://storage.googleapis.com/capv-images/release/v1.17.5/photon-3-kube-v1.17.5.ova). Don't forget to import them in your vsphere and mark them as template. 
+-   For this case we'll use [ubuntu-1804-kube-v1.18.2](http://storage.googleapis.com/capv-images/release/v1.18.2/ubuntu-1804-kube-v1.18.2.ova). Don't forget to import them in your vsphere and mark them as template. 
 - Coffee ☕
 
 
