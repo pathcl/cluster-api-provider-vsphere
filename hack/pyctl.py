@@ -480,20 +480,21 @@ def create_cluster(args):
         }
     }
 
+    crsname = args.name + "-crs-0"
     clusterresourceset = {
        "apiVersion": "addons.cluster.x-k8s.io/v1alpha3",
        "kind": "ClusterResourceSet",
        "metadata": {
           "labels": {
-             "cluster.x-k8s.io/cluster-name": "lab01"
+             "cluster.x-k8s.io/cluster-name": args.name
           },
-          "name": "lab01-crs-0",
+          "name": crsname,
           "namespace": "default"
        },
        "spec": {
           "clusterSelector": {
              "matchLabels": {
-                "cluster.x-k8s.io/cluster-name": "lab01"
+                "cluster.x-k8s.io/cluster-name": args.name
              }
           },
           "resources": [
