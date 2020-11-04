@@ -2056,7 +2056,7 @@ if __name__ == '__main__':
     upgrade_parser.add_argument(
         '-ds', action='store', help='vCenter to use', dest="datastore", type=str, required=True)
     upgrade_parser.add_argument(
-        '-dc', action='store', help='vCenter to use', dest="dc", type=str, required=True)
+        '-dc', action='store', help='vCenter to use', dest="vsphere Datacenter to use", type=str, required=True)
 
     kubeconfig_parser = subparsers.add_parser(
         'kubeconfig', help='get kubeconfig for specified cluster')
