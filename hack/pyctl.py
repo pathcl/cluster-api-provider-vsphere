@@ -203,7 +203,7 @@ def create_cluster(args):
     TODO: get this through pyvmomi based on which cluster we're
     """
     if args.env == 'lab':
-        vm = result(datastore='Esxi_LocalSSD',
+        vm = result(datastore=args.datastore,
                     network=args.vlan,
                     resourcepool='*/Resources',
                     server=args.server,
@@ -1067,8 +1067,8 @@ def upgrade_cluster(args):
     "template": {
         "spec": {
             "cloneMode": "linkedClone",
-            "datacenter": "LabDC",
-            "datastore": "Esxi01_LocalVNME",
+            "datacenter": args.dc,
+            "datastore": args.datastore,
             "diskGiB": 80,
             "folder": args.vmfolder,
             "memoryMiB": 8192,
@@ -2018,6 +2018,9 @@ if __name__ == '__main__':
         '-u', action='store', help='vSphere username to use', dest="username", type=str, required=True)
     create_parser.add_argument(
         '-p', help='vSphere password to use', dest="password", type=str, required=False)
+    create_parser.add_argument(
+        '-ds', help='datstore to use', dest="datastore", type=str, required=True)
+
 
     delete_parser = subparsers.add_parser(
         'delete', help='Delete a cluster')
@@ -2050,6 +2053,10 @@ if __name__ == '__main__':
         '-vlan', action='store', help='Vlan name used by the cluster', dest="vlan", type=str, required=True, default='VM Network')
     upgrade_parser.add_argument(
         '-s', action='store', help='vCenter to use', dest="server", type=str, default='192.168.1.60', required=True)
+    upgrade_parser.add_argument(
+        '-ds', action='store', help='vCenter to use', dest="datastore", type=str, required=True)
+    upgrade_parser.add_argument(
+        '-dc', action='store', help='vCenter to use', dest="dc", type=str, required=True)
 
     kubeconfig_parser = subparsers.add_parser(
         'kubeconfig', help='get kubeconfig for specified cluster')

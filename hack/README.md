@@ -275,7 +275,7 @@ Now we can start!
 
 Assuming you're in the same machine where k3s is running and you have cluster-admin access
 
-    pyctl.py create -n lab01 -dc LabDC -u administrator@vsphere.local -s 192.168.1.60 -vip 192.168.1.240 -vlan 'VM Network' -t ubuntu-1804-kube-v1.18.2
+    pyctl.py create -n lab01 -dc LabDC -u administrator@vsphere.local -s 192.168.1.60 -vip 192.168.1.240 -vlan 'VM Network' -t ubuntu-1804-kube-v1.18.2 -ds 'Esxi_LocalSSD'
     
 Details:
 
@@ -286,6 +286,7 @@ Details:
     -vip control plane endpoint (kube-vip)
     -vlan vlan where your cluster will run
     -t template to use
+    -ds name of your vcenter datastore
     
 ## Upgrade cluster
 
@@ -305,7 +306,7 @@ Steps to create your own template.
    
 Only then you can upgrade:
 
-    pyctl.py upgrade -n lab01 -t ubuntu-1804-kube-v1.19.3 -U v1.19.3
+    pyctl.py upgrade -n lab01 -t ubuntu-1804-kube-v1.19.3 -U v1.19.3 -ds 'Esxi_LocalSSD' -dc LabDC
     
     
 ## Get kubeconfig
